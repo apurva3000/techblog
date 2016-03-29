@@ -1,0 +1,6 @@
+{
+  "name": "Bits and bytes - Apurva Nandan",
+  "tagline": "Observations and Experiences from Web engineering and Big data. ",
+  "body": "### How to connect Jupyter ipython notebook to Spark running on standalone or Yarn\r\nComing soon.\r\n\r\n### Spark Shuffle tuning for optimal performance with Joins in Dataframes\r\nComing soon\r\n\r\n### Performing Background tasks in Spring and Message Queues\r\nComing soon\r\n\r\n### Using nginx to secure your web services better\r\nComing soon\r\n\r\n### Contact\r\nBlog of @apurva3000 Check out my repos at [repo list](https://github.com/apurva3000)\r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
