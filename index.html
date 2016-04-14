@@ -80,17 +80,12 @@ Although, Ambari will show you that NFSGateway is successfully running in the da
 
 <p>For example in this configuration</p>
 
-<p><code>location /resources {</code></p>
-
-<pre><code>        `proxy_pass   http://tomcat-backend-server:8080/ResourceStatus/rest/status/;`
-
-        `proxy_set_header Upgrade $http_upgrade;`
-
-        `proxy_set_header Connection "upgrade";`
-
-        `proxy_set_header Host $host;`
-
-    `}`
+<pre><code>location /resources {
+    proxy_pass   http://tomcat-backend-server:8080/ResourceStatus/rest/status/;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+    proxy_set_header Host $host;
+}
 </code></pre>
 
 <p>If I try to access the url by http://ngnix-proxy-server-address/resources , this would work fine, but if I or my broswer puts a forward slash http://ngnix-proxy-server-address/resources/, then this would fail as the mapping for tomcat backend server then becomes ResourceStatus/rest/status//, which is undefined. 
