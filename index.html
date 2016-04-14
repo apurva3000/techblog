@@ -1,25 +1,37 @@
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="UTF-8">
-    <title>Bits and bytes - Apurva Nandan by apurva3000</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-  </head>
-  <body>
-    <section class="page-header">
-      <h1 class="project-name">Bits and bytes - Apurva Nandan</h1>
-      <h2 class="project-tagline">Observations and Experiences from Web engineering and Big data. </h2>
-      <a href="https://github.com/apurva3000/techblog" class="btn">View on GitHub</a>
-      <a href="https://github.com/apurva3000/techblog/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/apurva3000/techblog/tarball/master" class="btn">Download .tar.gz</a>
-    </section>
+<html>
 
-    <section class="main-content">
-      <h3>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Bits and bytes - Apurva Nandan : Observations and Experiences from Web engineering and Big data. ">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Bits and bytes - Apurva Nandan</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/apurva3000/techblog">View on GitHub</a>
+
+          <h1 id="project_title">Bits and bytes - Apurva Nandan</h1>
+          <h2 id="project_tagline">Observations and Experiences from Web engineering and Big data. </h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/apurva3000/techblog/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/apurva3000/techblog/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h3>
 <a id="how-to-connect-jupyter-ipython-notebook-to-spark-running-on-standalone-or-yarn" class="anchor" href="#how-to-connect-jupyter-ipython-notebook-to-spark-running-on-standalone-or-yarn" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to connect Jupyter ipython notebook to Spark running on standalone or Yarn</h3>
 
 <p>Coming soon.</p>
@@ -32,11 +44,17 @@
 <p>If you happen to use NFSGateway for your Hortonworks cluster <em>(I am using HDP 2.3)</em>, you would often be puzzled about where to find the mount point location i.e. The filesystem where you can see all the files being kept in hdfs.
 Although, Ambari will show you that NFSGateway is successfully running in the dashboard, it means it has only started the rpcbind and nfs services <em>(I run it on my master node which happens to be my namenode)</em></p>
 
-<p>First create a directory named say for example, <code>/hdfs-local</code> (requires sudo rights)
-Then add the following configuration in your /etc/fstab file (requires sudo rights)
-localhost:/ /hdfs_local nfs rw,vers=3,proto=tcp,nolock,timeo=600 0 0
-Then Run the following command (Requires sudo rights)
-<code>mount -t nfs -o vers=3,proto=tcp,nolock localhost:/ /hdfs-local</code></p>
+<p>So, you need to mount the hdfs to a location on your local filesystem manually. And here's how you can do it:</p>
+
+<p>First create a directory named say for example, <code>/hdfs-local</code> (requires sudo rights)</p>
+
+<p>Then add the following configuration in your /etc/fstab file (requires sudo rights)</p>
+
+<p><code>localhost:/ /hdfs_local nfs rw,vers=3,proto=tcp,nolock,timeo=600 0 0</code></p>
+
+<p>Then Run the following command (Requires sudo rights)</p>
+
+<p><code>mount -t nfs -o vers=3,proto=tcp,nolock localhost:/ /hdfs-local</code></p>
 
 <p>NOTE: This assumes you are running the NFSGateway on the current node where you're trying to mount it (localhost used in the config)</p>
 
@@ -60,13 +78,20 @@ Then Run the following command (Requires sudo rights)
 
 <p>Often when using ngnix as a reverse proxy and providing the proxy pass as a URL to, for example, some service running on a webserver, there are some problems when the user tries to use the nginx url.</p>
 
-<p>For example in this configuration
-<code>location /resources {</code>
-            <code>proxy_pass   http://tomcat-backend-server:8080/ResourceStatus/rest/status/;</code>
-            <code>proxy_set_header Upgrade $http_upgrade;</code>
-            <code>proxy_set_header Connection "upgrade";</code>
-            <code>proxy_set_header Host $host;</code>
-        <code>}</code></p>
+<p>For example in this configuration</p>
+
+<p><code>location /resources {</code></p>
+
+<pre><code>        `proxy_pass   http://tomcat-backend-server:8080/ResourceStatus/rest/status/;`
+
+        `proxy_set_header Upgrade $http_upgrade;`
+
+        `proxy_set_header Connection "upgrade";`
+
+        `proxy_set_header Host $host;`
+
+    `}`
+</code></pre>
 
 <p>If I try to access the url by http://ngnix-proxy-server-address/resources , this would work fine, but if I or my broswer puts a forward slash http://ngnix-proxy-server-address/resources/, then this would fail as the mapping for tomcat backend server then becomes ResourceStatus/rest/status//, which is undefined. 
 Hence, when providing the proxy_pass, remove the forward slash from the end of the url, to avoid any problems.</p>
@@ -75,15 +100,18 @@ Hence, when providing the proxy_pass, remove the forward slash from the end of t
 <a id="contact" class="anchor" href="#contact" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contact</h3>
 
 <p>Blog of <a href="https://github.com/apurva3000" class="user-mention">@apurva3000</a> Check out my repos at <a href="https://github.com/apurva3000">repo list</a></p>
+      </section>
+    </div>
 
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/apurva3000/techblog">Bits and bytes - Apurva Nandan</a> is maintained by <a href="https://github.com/apurva3000">apurva3000</a>.</span>
-
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Bits and bytes - Apurva Nandan maintained by <a href="https://github.com/apurva3000">apurva3000</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
       </footer>
+    </div>
 
-    </section>
+    
 
-  
   </body>
 </html>
