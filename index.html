@@ -48,10 +48,6 @@ Although, Ambari will show you that NFSGateway is successfully running in the da
 
 <p>First create a directory named say for example, <code>/hdfs-local</code> (requires sudo rights)</p>
 
-<p>Then add the following configuration in your /etc/fstab file (requires sudo rights)</p>
-
-<p><code>localhost:/ /hdfs_local nfs rw,vers=3,proto=tcp,nolock,timeo=600 0 0</code></p>
-
 <p>Then Run the following command (Requires sudo rights)</p>
 
 <p><code>mount -t nfs -o vers=3,proto=tcp,nolock localhost:/ /hdfs-local</code></p>
