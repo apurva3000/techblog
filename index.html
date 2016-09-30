@@ -32,6 +32,18 @@
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
         <h3>
+<a id="fixing-the-namenode-blocks-health-alert-in-hdfs" class="anchor" href="#fixing-the-namenode-blocks-health-alert-in-hdfs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Fixing the NameNode Blocks Health alert in HDFS</h3>
+
+<p>If you're using Ambari, the red alert pops up as "NameNode Blocks Health" , and as per the description from Hortonworks "This service-level alert is triggered if the number of corrupt or missing blocks exceeds the configured critical threshold."
+That being said, it means that the blocks in HDFS have gone corrupt. </p>
+
+<p>To check what files have been corrupted, execute the command (to be run with superuser privileges):
+<code>sudo -u hdfs hadoop fsck -list-corruptfileblocks</code></p>
+
+<p>To fix the corrupted blocks, try to execute the following command:
+<code>sudo -u hdfs hadoop fsck / -delete</code></p>
+
+<h3>
 <a id="how-to-connect-jupyter-ipython-notebook-to-spark-running-on-standalone-or-yarn" class="anchor" href="#how-to-connect-jupyter-ipython-notebook-to-spark-running-on-standalone-or-yarn" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to connect Jupyter ipython notebook to Spark running on standalone or Yarn</h3>
 
 <p>Coming soon.</p>
