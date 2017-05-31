@@ -1,0 +1,8 @@
+title: Bits and bytes - Apurva Nandan
+description: "Observations and Experiences from Web engineering and Big data. "
+google_analytics: 
+show_downloads: true
+theme: jekyll-theme-architect
+
+gems:
+  - jekyll-mentions
