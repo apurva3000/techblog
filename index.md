@@ -1,3 +1,28 @@
+### GIT chat: rebase
+If you're looking to use git for real world applications and your team size is growing, chances are that you might have to start using rebase. This is used in scenarios when the master has been updated since you started on your branch, then you would have to merge the latest changes from the master to your own branch.
+
+Since, I do not write these blogs underlying all the in-depth analysis but talk about things in general, I would mention my own experiences here. So, the first thing is that using a merge commit is ugly and ruins the master history, specially when the number of commits keep on increasing and it gets trickier to track everything.
+
+In order to do a rebase, make sure you have updated your master branch and then from your branch run a rebase like this:
+
+`git rebase master` 
+
+But the actual fun begins when you start doing complex things with an interactive rebase, in order to do a that, type the following:
+
+`git rebase master -i`
+
+Now you might see a list of commits like this:
+
+pick 0x0x0x0 commit 1
+pick 000x000 commit 2
+pick 00000x0 commit 3
+
+Now what you can do is move commits around by just editing the order in a text editor like vim, or use the options like "squash" , "fixup", "reword", "edit".
+
+So, if you edit "pick" with "squash" in commit 2, it will merge the commit 2 to commit 1, as a single commit with the messages merged. Similarly, if you had used "fixup" in commit 2, it would have still merged the commit but erased the commit message of commit 2. 
+
+These are used when you're working on complex issues and do not want to create messy looking history. Mail me in case you have doubts.
+
 ###  Fixing the NameNode Blocks Health alert in HDFS
 If you're using Ambari, the red alert pops up as "NameNode Blocks Health" , and as per the description from Hortonworks "This service-level alert is triggered if the number of corrupt or missing blocks exceeds the configured critical threshold."
 That being said, it means that the blocks in HDFS have gone corrupt. 
@@ -7,6 +32,9 @@ To check what files have been corrupted, execute the command (to be run with sup
 
 To fix the corrupted blocks, try to execute the following command:
 `sudo -u hdfs hadoop fsck / -delete`
+
+### GIT chat: reset
+coming soon
 
 ### How to connect Jupyter ipython notebook to Spark running on standalone or Yarn
 Coming soon.
