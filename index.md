@@ -1,3 +1,29 @@
+### Deploying Java SpringBoot code on Openshift
+
+This post is divided into two parts:
+1. Maven plugin : as a seasoned Java developer, a lot of people tend to use the maven assembly plugin for building their code. 
+
+The plugin to use the boot plugin and the pom.xml should contain the following blocks
+
+    <build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+Tip: As a novice, it is very easy to miss out on some of the dependencies required when using Spring Boot, so it is recommended to use the Spring Boot Initializer to start things off.
+
+2. With the Maven plugin done, it's time to deploy stuff on Openshift, and for that you need to use the S2I (Source-to-image) utility which builds the image like magic.
+
+However, the image which is recommended for building Java based images, might not actually work for some people (As one of my attempts, I tried *redhatopenjdk/redhat-openjdk18-openshift* image but it didn't work for me)
+So, I found out the image to be used which works for building Java Spring Boot code is : `fabric8/s2i-java`
+
+The command for triggering a build in Openshift is : `oc new-build --name=mongorest fabric8/s2i-java  --binary=true`
+Notice, the option `binary` , it is used when you are building from a local directory instead of, for example - a Git repo.
+
 ### GIT chat: rebase
 If you're looking to use git for real world applications and your team size is growing, chances are that you might have to start using rebase soon. This is used when the master of the repo has been updated since you started working on your branch, then you would have to merge the latest changes from the master to your own branch.
 
