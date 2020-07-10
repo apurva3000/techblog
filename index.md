@@ -24,6 +24,18 @@ So, I found out the image to be used which works for building Java Spring Boot c
 The command for triggering a build in Openshift is : `oc new-build --name=mongorest fabric8/s2i-java  --binary=true`
 Notice, the option `binary` , it is used when you are building from a local directory instead of, for example - a Git repo.
 
+### Building VueJS apps for Openshift for production/testing
+
+There's actually a very good article regarding this : https://www.openshift.com/blog/deploy-vuejs-applications-on-openshift
+
+What I want to talk about here is the different environments for building the dist folder using npm run build. 
+
+I have three .env files in my local setup, which are .env.development.local .env.production.local and .env.testing.local, all three contain the url of the backend to use, which differ depending upon the environment.
+
+The development one runs when I issue the command `npm run serve` , the production one is used by default when you run the command `npm run build` and if you want to deploy the testing version, then you build it using the following command `npm run build -- --mode testing`, the extra -- is used because of the following explaination : https://github.com/vuejs/vue-cli/issues/1528#issuecomment-395970443
+
+Kepp *Vueing* on Openshift!
+
 ### GIT chat: rebase
 If you're looking to use git for real world applications and your team size is growing, chances are that you might have to start using rebase soon. This is used when the master of the repo has been updated since you started working on your branch, then you would have to merge the latest changes from the master to your own branch.
 
