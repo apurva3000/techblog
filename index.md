@@ -74,9 +74,13 @@ It was often the case in my work that I used to perform joins with two dataframe
 
 They key here is to tune a parameter called `spark.sql.shuffle.partitions` which has a default value of 200. I tried lowering it and then successfully reduced the number of tasks which spark used to spawn.
 
-### Using nginx to secure your web services better
-Coming soon
+### Reading Static files in Java ( packaged jar files)
+You can read the files kept in `src/main/resources` using a lot of methods (google it) when running it on your local machine for dev purposes. The files are read from the classpath.
+However, when deploying the jar (eg. Spring Boot), the file is packaged and then you need to make sure that you are reading the bytes from the stream not the file itself, because the file path location won't exist, unless you manually unzip the jar.
 
+	InputStream in = getClass().getClassLoader().getResourceAsStream("example.properties");
+	InputStream in = StaticClassName.class.getClassLoader().getResourceAsStream("example.properties"); // Alternatively, for static classes
+	
 ### The Importance of Forward Slash in nginx
 Often when using ngnix as a reverse proxy and providing the proxy pass as a URL to, for example, some service running on a webserver, there are some problems when the user tries to use the nginx url.
 
